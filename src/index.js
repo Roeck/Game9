@@ -4,12 +4,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { createStore } from 'redux';
+import rootReducer from './reducers';
+import { Provider } from 'react-redux';
 
-const store = createStore();
+const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducers);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
+  <React.StrictMode store={store}>
+    <Provider>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
