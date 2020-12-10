@@ -1,31 +1,35 @@
 import React from 'react';
+//Styling and Animation
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-
+//Redux
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { smallImage } from '../util';
+//IMAGES
 
-const GameDetail = () => {
+//Star Images
+
+const GameDetail = ({ pathId }) => {
   const history = useHistory();
-  const exitDetailHandler = (e) => {
+
+  //Exit Detail
+  const exitDetailHander = (e) => {
     const element = e.target;
     if (element.classList.contains('shadow')) {
       document.body.style.overflow = 'auto';
       history.push('/');
     }
   };
+
+  //Data
   const { screen, game, isLoading } = useSelector((state) => state.detail);
   return (
     <>
       {!isLoading && (
-        <CardShadow className='shadow' onClick={exitDetailHandler}>
-          <Detail>
+        <CardShadow className='shadow' onClick={exitDetailHander}>
+          <Detail layoutId={pathId}>
             <Stats>
-              <div className='rating'>
-                <h3>{game.name}</h3>
-                <p>Rating: {game.rating}</p>
-              </div>
               <Info>
                 <h3>Platforms</h3>
                 <Platforms>
@@ -36,7 +40,8 @@ const GameDetail = () => {
               </Info>
             </Stats>
             <Media>
-              <img
+              <motion.img
+                layoutId={`image ${pathId}`}
                 src={smallImage(game.background_image, 1280)}
                 alt={game.background_image}
               />
@@ -49,7 +54,7 @@ const GameDetail = () => {
                 <img
                   src={smallImage(screen.image, 1280)}
                   key={screen.id}
-                  alt='game'
+                  alt={screen.image}
                 />
               ))}
             </div>
@@ -104,11 +109,9 @@ const Stats = styled(motion.div)`
     display: inline;
   }
 `;
-
 const Info = styled(motion.div)`
   text-align: center;
 `;
-
 const Platforms = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
