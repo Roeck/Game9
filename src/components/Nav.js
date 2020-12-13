@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 //Animation
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { fadeIn } from '../animations';
 import logo from '../img/logo.svg';
 //Redux and Routes
 import { fetchSearch } from '../actions/gamesAction';
@@ -23,7 +24,7 @@ const Nav = () => {
     dispatch({ type: 'CLEAR_SEARCHED' });
   };
   return (
-    <StyledNav initial='hidden' animate='show'>
+    <StyledNav variants={fadeIn} initial='hidden' animate='show'>
       <Logo onClick={clearSearched}>
         <img src={logo} alt='logo' />
         <h1>GAME9</h1>
@@ -69,8 +70,8 @@ const Logo = styled(motion.div)`
   padding: 1rem;
   cursor: pointer;
   img {
-    height: 2rem;
-    width: 2rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 `;
 
