@@ -30,7 +30,8 @@ const Nav = () => {
         <h1>GAME9</h1>
       </Logo>
       <form className='search'>
-        <input value={textInput} onChange={inputHandler} type='text' />
+        <input value={textInput} onChange={inputHandler} type='text' placeholder='Enter game name...'/>
+         
         <button onClick={submitSearch} type='submit'>
           Search
         </button>
@@ -43,6 +44,7 @@ const StyledNav = styled(motion.nav)`
   padding: 3rem 5rem;
   text-align: center;
   input {
+    border-radius: 3px 3px;
     width: 30%;
     font-size: 1.5rem;
     padding: 0.5rem;
@@ -51,15 +53,17 @@ const StyledNav = styled(motion.nav)`
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.2);
   }
   button {
+    border-radius: 3px 3px;
     font-size: 1.5rem;
     border: none;
     padding: 0.5rem 2rem;
     cursor: pointer;
     background: black;
     color: white;
+    transition: 0.3s;
 
     :hover {
-      background: #5b5b5b;
+      background-color: #5b5b5b;
     }
   }
 `;
